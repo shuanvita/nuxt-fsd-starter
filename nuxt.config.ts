@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/scripts', '@nuxt/eslint', 'nuxt-svgo'],
 
   srcDir: './src',

@@ -1,9 +1,14 @@
+<script setup lang="ts">
+import { AppHeader } from '@/widgets/AppHeader';
+import { AppFooter } from '@/widgets/AppFooter';
+</script>
+
 <template>
   <div>
-    <header>Header</header>
+    <AppHeader />
     <main>
       <slot />
     </main>
-    <footer>Footer</footer>
+    <AppFooter />
   </div>
 </template>
