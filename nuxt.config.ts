@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      htmlAttrs: { lang: 'ru' },
       title: 'Nuxt FSD Starter',
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

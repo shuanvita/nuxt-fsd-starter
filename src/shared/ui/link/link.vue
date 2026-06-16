@@ -32,9 +32,20 @@ const rel = computed(() => {
   return isExternal.value && props.target === '_blank' ? 'noopener noreferrer' : undefined;
 });
 
+const isButtonLike = computed(() =>
+  ['default', 'primary', 'outline'].includes(props.variant),
+);
+
 const classes = computed(() => {
   if (props.variant === 'custom') {
     return undefined;
+  }
+
+  if (props.variant === 'link') {
+    return [
+      'inline-flex items-center gap-2.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+      variants.link,
+    ];
   }
 
   return [
@@ -59,7 +70,7 @@ if (import.meta.env.DEV) {
     :target="props.target"
     :rel="rel"
     :aria-label="props.ariaLabel"
-    :class="[classes, props.variant !== 'custom' && !$slots.icon && 'px-[14px] lg:px-6 py-[14px]']"
+    :class="[classes, isButtonLike && !$slots.icon && 'px-3.5 lg:px-6 py-3.5']"
   >
     <slot v-if="slots.icon" name="icon" />
     <template v-else>

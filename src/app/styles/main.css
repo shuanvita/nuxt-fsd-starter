@@ -6,6 +6,10 @@
   --default-line-height: 1.5;
   --color-foreground: #000000;
   --color-background: #ffffff;
+  --color-default: #000000;
+  --color-primary: #7c3aed;
+  --color-secondary: #ede9fe;
+  --color-secondary-300: #c4b5fd;
 }
 
 @layer base {
@@ -13,6 +17,7 @@
     font-size: var(--default-font-size);
     font-optical-sizing: auto;
     line-height: var(--default-line-height);
+    color: var(--color-foreground);
     background-color: var(--color-background);
   }
 }
