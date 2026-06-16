@@ -29,4 +29,8 @@ export default defineNuxtConfig({
     componentPrefix: 'svg',
     autoImportPath: './shared/assets/svg',
   },
+
+  image: {
+    format: ['avif', 'webp'],
+  },
 });
