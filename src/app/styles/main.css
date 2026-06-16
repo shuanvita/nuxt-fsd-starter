@@ -1,1 +1,22 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Nunito', sans-serif;
+  --default-font-size: 18px;
+  --default-line-height: 1.5;
+  --color-foreground: #000000;
+  --color-background: #ffffff;
+}
+
+@layer base {
+  body {
+    font-size: var(--default-font-size);
+    font-optical-sizing: auto;
+    line-height: var(--default-line-height);
+    background-color: var(--color-background);
+  }
+}
+
+.container {
+  @apply max-w-360 mx-auto px-4 xl:px-8;
+}
