@@ -1,75 +1,68 @@
-# Nuxt Minimal Starter
+# Nuxt FSD Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Стартер на **Nuxt 4** с архитектурой **Feature-Sliced Design (FSD)**, Tailwind CSS v4 и набором модулей Nuxt (`@nuxt/image`, `@nuxt/fonts`, `@nuxt/scripts`, `nuxt-svgo`, `@nuxt/eslint`).
 
-## Setup
+## Требования
 
-Make sure to install dependencies:
+- Node.js 22+
+- npm (используется `package-lock.json`)
+
+## Установка
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Команды
 
-Start the development server on `http://localhost:3000`:
+| Команда | Описание |
+| --- | --- |
+| `npm run dev` | Проверка FSD (steiger) + запуск дев-сервера на `http://localhost:3000` |
+| `npm run build` | Сборка для продакшена |
+| `npm run preview` | Локальный предпросмотр продакшен-сборки |
+| `npm run generate` | Статическая генерация сайта |
+| `npm run lint:fsd` | Проверка соответствия архитектуре FSD |
 
-```bash
-# npm
-npm run dev
+## Структура проекта
 
-# pnpm
-pnpm dev
+Весь код лежит в `src/` (`srcDir: './src'`) и организован по слоям FSD:
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```
+src/
+  app/            # инициализация приложения
+    entrypoint/   # app.vue (Nuxt dir.app)
+    routes/       # страницы-маршруты (Nuxt dir.pages)
+    layouts/      # лейауты (Nuxt dir.layouts)
+    styles/       # глобальные стили (main.css)
+  pages/          # FSD-слой страниц (UI-композиция)
+  shared/         # переиспользуемое: ui-компоненты, ассеты
+    ui/           # UI-кит (button, link, ...)
+    assets/svg/   # SVG-иконки
 ```
 
-## Production
+> Кастомные `dir` Nuxt заданы в `nuxt.config.ts`, чтобы совместить требования Nuxt с FSD.
 
-Build the application for production:
+## UI-компоненты
 
-```bash
-# npm
-npm run build
+Компоненты из `src/shared/ui/**/*.vue` авто-импортируются с префиксом `ui` (`<UiButton>`, `<UiLink>`). Авто-импорт ограничен `.vue`-файлами, поэтому барелл-файлы `index.ts` не конфликтуют.
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```vue
+<UiButton variant="primary">Купить</UiButton>
+<UiLink to="/about">О нас</UiLink>
+<UiLink to="https://nuxt.com" target="_blank" variant="outline">Nuxt</UiLink>
 ```
 
-Locally preview production build:
+## Иконки (nuxt-svgo)
 
-```bash
-# npm
-npm run preview
+SVG из `src/shared/assets/svg/` авто-импортируются как компоненты с префиксом `svg` (`arrow.svg` → `<SvgArrow>`). Размер задаётся через CSS (например, `class="w-6 h-6"`).
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+```vue
+<UiButton aria-label="Избранное">
+  <template #icon><SvgHeart class="w-6 h-6" /></template>
+</UiButton>
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Полезные ссылки
+
+- [Документация Nuxt](https://nuxt.com/docs)
+- [Feature-Sliced Design](https://feature-sliced.design)
