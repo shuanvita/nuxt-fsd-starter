@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     layouts: 'app/layouts',
   },
 
-  components: [{ path: '~/shared/ui', prefix: 'ui' }],
+  components: [{ path: '~/shared/ui', prefix: 'ui', extensions: ['vue'] }],
 
   css: ['./src/app/styles/main.css'],
 
